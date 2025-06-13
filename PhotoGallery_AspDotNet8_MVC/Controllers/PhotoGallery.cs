@@ -1,6 +1,8 @@
-﻿namespace PhotoGallery_AspDotNet8_MVC.Controllers;
+﻿using PhotoGallery_AspDotNet8_MVC.ViewModels;
 
-    public class PhotoGallery : Controller
+namespace PhotoGallery_AspDotNet8_MVC.Controllers;
+
+public class PhotoGallery : Controller
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly UserManager<ApplicationUser> _userManager;

@@ -6,3 +6,4 @@ global using System.ComponentModel.DataAnnotations;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;
 global using PhotoGallery_AspDotNet8_MVC.DbContext;
+global using PhotoGallery_AspDotNet8_MVC.ViewModels;
