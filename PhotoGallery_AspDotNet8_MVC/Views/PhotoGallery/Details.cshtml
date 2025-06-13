@@ -22,8 +22,7 @@
                 }
             </dd>
         </dl>
-        @if (User.Identity.IsAuthenticated &&
-        (User.Identity.Name == Model.Owner.UserName || User.IsInRole("Admin")))
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
         {
             <form asp-action="Delete" method="post" onsubmit="return confirm('Delete this photo?');">
                 <input type="hidden" name="id" value="@Model.Id" />

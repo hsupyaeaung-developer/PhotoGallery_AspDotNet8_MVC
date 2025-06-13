@@ -20,4 +20,4 @@
         public string ImageMimeType { get; set; }
 
         public List<Tag> Tags { get; set; } = new();
-    }
+}

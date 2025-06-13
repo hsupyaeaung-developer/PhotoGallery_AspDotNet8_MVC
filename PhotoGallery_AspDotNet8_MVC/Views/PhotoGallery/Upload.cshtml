@@ -1,11 +1,45 @@
 ﻿@model PhotoUploadViewModel;
 <h2>Upload Photo</h2>
 <form asp-action="Upload" method="post" enctype="multipart/form-data">
-    <div class="mb-3"><label asp-for="Title"></label><input asp-for="Title" class="form-control" /><span asp-validation-for="Title" class="text-danger"></span></div>
-    <div class="mb-3"><label asp-for="Description"></label><textarea asp-for="Description" class="form-control"></textarea></div>
-    <div class="mb-3"><label asp-for="Location"></label><input asp-for="Location" class="form-control" /></div>
-    <div class="mb-3"><label asp-for="Tags">Tags (comma-separated)</label><input asp-for="Tags" class="form-control" /></div>
-    <div class="mb-3"><label asp-for="PhotoFile"></label><input asp-for="PhotoFile" type="file" class="form-control" /><span asp-validation-for="PhotoFile" class="text-danger"></span></div>
+    <div class="mb-3">
+        <label asp-for="Title">
+            @Html.DisplayNameFor(model => model.Title)
+            <span class="required">*</span>
+        </label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description">
+            @Html.DisplayNameFor(model => model.Description)
+            <span class="required">*</span>
+        </label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Location">
+            @Html.DisplayNameFor(model => model.Location)
+            <span class="required">*</span>
+        </label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Tags">Tags (comma-separated)
+            <span class="required">*</span>
+        </label>
+        <input asp-for="Tags" class="form-control" />
+        <span asp-validation-for="Tags" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PhotoFile">
+            @Html.DisplayNameFor(model => model.PhotoFile)
+            <span class="required">*</span>
+        </label>
+        <input asp-for="PhotoFile" type="file" class="form-control" />
+        <span asp-validation-for="PhotoFile" class="text-danger"></span>
+    </div>
     <button type="submit" class="btn btn-primary">Upload</button>
 </form>
 @section Scripts {

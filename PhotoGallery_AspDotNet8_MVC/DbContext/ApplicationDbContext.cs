@@ -1,4 +1,6 @@
-﻿namespace PhotoGallery_AspDotNet8_MVC.DbContext;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace PhotoGallery_AspDotNet8_MVC.DbContext;
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Photo> Photos { get; set; }
@@ -13,5 +15,9 @@
             builder.Entity<Photo>()
                 .HasMany(p => p.Tags)
                 .WithMany(t => t.Photos);
+
+            builder.Entity<ApplicationUser>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
         }
     }

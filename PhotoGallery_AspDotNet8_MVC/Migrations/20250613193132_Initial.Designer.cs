@@ -12,7 +12,7 @@ using PhotoGallery_AspDotNet8_MVC.DbContext;
 namespace PhotoGallery_AspDotNet8_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250613144153_Initial")]
+    [Migration("20250613193132_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -215,6 +215,10 @@ namespace PhotoGallery_AspDotNet8_MVC.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");

@@ -1,5 +1,29 @@
 ﻿@model IEnumerable<PhotoViewModel>
 <h2>Gallery</h2>
+<div>
+    <a asp-action="Index" asp-route-tagFilter="">All</a>
+    @{
+        int count = 0;
+    }
+    @foreach (var tag in (List<string>)ViewBag.AllTags)
+    {
+        
+        if(count == 0)
+        {
+            <span> | </span>
+        }
+        if (tag == (string)ViewBag.SelectedTag)
+        {
+            <strong>@tag</strong>
+        }
+        else
+        {
+            <a asp-action="Index" asp-route-tagFilter="@tag">@tag</a>
+        }
+        <span> | </span>
+        ++count;
+    }
+</div>
 <div class="row">
   @foreach (var p in Model)
   {
