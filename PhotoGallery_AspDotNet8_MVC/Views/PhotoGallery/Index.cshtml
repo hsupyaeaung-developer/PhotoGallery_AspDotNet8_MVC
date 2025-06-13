@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Photo>
+<h2>Gallery</h2>
+<div class="row">
+  @foreach (var p in Model)
+  {
+    <div class="col-6 col-md-4 col-lg-3 mb-3">
+      <div class="card h-100">
+        <a asp-action="Details" asp-route-id="@p.Id">
+          <img src="@Url.Action("GetImage", new { id = p.Id })"
+               class="card-img-top" style="height:150px;object-fit:cover;" alt="@p.Title" />
+        </a>
+        <div class="card-body">
+          <h6 class="card-title">@p.Title</h6>
+          <p class="card-text">@p.UploadedDate.ToShortDateString()</p>
+        </div>
+      </div>
+    </div>
+  }
+</div>
