@@ -1,4 +1,6 @@
-﻿namespace PhotoGallery_AspDotNet8_MVC.Models;
+﻿using System.Security.Policy;
+
+namespace PhotoGallery_AspDotNet8_MVC.Models;
 
     public class Photo
     {
@@ -20,4 +22,5 @@
         public string ImageMimeType { get; set; }
 
         public List<Tag> Tags { get; set; } = new();
+        public string FileName { get; set; }
 }

@@ -1,4 +1,5 @@
-﻿using PhotoGallery_AspDotNet8_MVC.ViewModels;
+﻿using Microsoft.EntityFrameworkCore;
+using PhotoGallery_AspDotNet8_MVC.ViewModels;
 
 namespace PhotoGallery_AspDotNet8_MVC.Controllers;
 
@@ -51,7 +52,7 @@ public class PhotoGalleryController : Controller
         return View(photos);
     }
 
-    [HttpGet]
+    [HttpGet, AllowAnonymous]
     public async Task<IActionResult> Details(int id)
     {
         var PhotoInfo = await _dbContext.Photos
@@ -104,7 +105,8 @@ public class PhotoGalleryController : Controller
             UploadedDate = DateTime.UtcNow,
             OwnerId = user.Id,
             ImageData = ms.ToArray(),
-            ImageMimeType = vm.PhotoFile.ContentType
+            ImageMimeType = vm.PhotoFile.ContentType,
+            FileName = vm.PhotoFile.FileName
         };
 
         if (!string.IsNullOrEmpty(vm.Tags))
@@ -165,5 +167,18 @@ public class PhotoGalleryController : Controller
         return p == null
             ? NotFound()
             : File(p.ImageData, p.ImageMimeType);
+    }
+
+    [HttpGet, AllowAnonymous]
+    public async Task<IActionResult> Download(int id)
+    {
+        var photo = await _dbContext.Photos.FindAsync(id);
+        if (photo == null || photo.ImageData == null)
+            return NotFound();
+
+        var fileName = string.IsNullOrEmpty(photo.FileName) ? $"{photo.Title}.jpg" : photo.FileName;
+        var contentType = string.IsNullOrEmpty(photo.ImageMimeType) ? "application/octet-stream" : photo.ImageMimeType;
+
+        return File(photo.ImageData, contentType, fileName);
     }
 }
