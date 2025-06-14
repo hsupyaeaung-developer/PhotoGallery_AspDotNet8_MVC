@@ -5,7 +5,9 @@ using PhotoGallery_AspDotNet8_MVC.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
+    // options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"))
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection"))
+    );
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
